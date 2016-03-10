@@ -89,6 +89,7 @@ body {
     font-family: 'helvetica_neue';
     font-size: 22px;
     line-height: 26px;
+	background: #f1f1f1;
 }
 
 a {
@@ -99,25 +100,70 @@ a {
 	width: 90%;
 	max-width: 1170px;
 	margin: 0 auto;
-	background: #eff5f7;
+	height: 100vh;
+	background: #fff;
 }
 
 #cards {
-	width: 80%;
-	padding: 1em;
+	width: 94%;
+	height: 1000px;
 	margin: 0 auto;
+	position: relative;
+}
+
+#button {
+	background: #d10a11;
+   border: none;
+   border-radius: 5px;
+   color: #fff;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 5%;
+   cursor: pointer;
+}
+
+.card-wrapp {
+	width: 33.3333%;
+	padding: 2%;
+	position: absolute;
+	opacity: 0;
+	display: none;
 }
 
 .card {
-	width: 33.3333%;
-	padding: 1em;
-	background: redrgb(241, 240, 240);
+	width: 100%;
+	height: 100%;
+	/*width: 20vw;
+	height: 20vw;*/
+	background: #fff;
 	float: left;
+	border-radius: 10px;
+	border: 12px solid #fff;
+	box-shadow: #bdbcbc 2px 2px 6px;
+	cursor: pointer;
 }
 
 .card-front {
-	background: #d10a11;
-	border-radius: 5px;
+	background: url(../images/card.svg) no-repeat center center #d10a11;
+	background-size: 40% 40%;
+	border-radius: 10px;
 	width: 100%;
 	height: 100%;
+	position: relative;
+}
+
+.sbb-logo {
+	width: 30px;
+	height: 30px;
+	height: auto;
+	position:absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.sbb-path {
+	fill: #fff;
 }
