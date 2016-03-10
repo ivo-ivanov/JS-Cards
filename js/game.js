@@ -1,6 +1,14 @@
 jQuery(document).ready(function($) {
 
-    
+    //Variables
+    var cardWidth = $('.card-wrapp').outerWidth();
+    $(window).resize(function(){
+        cardWidth = $('.card-wrapp').outerWidth();
+    });
+    console.log('.card wrapp: ' + cardWidth);
+    var left = 0;
+	var top = 0;
+
 
 	//Check for mobile devices
 	function isTouchEnabled() {
@@ -26,22 +34,15 @@ jQuery(document).ready(function($) {
 	isMobile();
 	$(window).resize(isMobile);
 
-	$('#button').on('click', function() {
-		mix();
-	});
-	var left = 0;
-	var top = 0;
 
 	function constructor() {
-		var left = 0;
-		var top = 0;
+        var top = 0;
+        var left = 0;
+
 		$('.card-wrapp').each(function(index) {
 			var self = this;
 			$(self).css({
-
-				'display': 'block'
-			});
-			$(self).css({
+				'display': 'block',
 				'transform': 'translate(' + left + 'px,' + top + 'px)'
 			});
 			left = left + 2;
@@ -54,14 +55,18 @@ jQuery(document).ready(function($) {
 
 	constructor();
 
-    $('.card-wrapp').css('height', $('.card-wrapp').outerWidth());
+    $('.card-wrapp').css('height', cardWidth + 'px');
     $(window).resize(function() {
-        $('.card-wrapp').css('height', $('.card-wrapp').outerWidth());
+        $('.card-wrapp').css('height', cardWidth + 'px');
     });
+
+
+    $('#button').on('click', function() {
+		mix();
+	});
 
 	function mix() {
 		var i;
-		var cardWidth = $('.card-wrapp').outerWidth();
 		for (i = 9; i > 0; i--) {
 			pos(i, cardWidth);
 		}
@@ -83,7 +88,7 @@ jQuery(document).ready(function($) {
                 top += cardWidth;
                 count = 0;
             }
-
+            console.log(left,top,count);
 			count++;
 
 		}, i * 50);
