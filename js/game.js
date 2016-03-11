@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 		cardWidth = $('.card-wrapp').outerWidth();
 	});
 
-	var left = 0;
+	var left = cardWidth;
 	var top = 0;
 
 
@@ -62,39 +62,68 @@ jQuery(document).ready(function($) {
 
 
 	$('body').on('click', '.button.notclicked, #cards.notclicked .card', function() {
-		mix();
+		mix2();
 		$('.notclicked').removeClass('notclicked');
 		$('.card').addClass('notclicked');
 	});
 
-	function mix() {
-		var i;
-		for (i = 9; i > 0; i--) {
-			pos(i, cardWidth);
-		}
-	}
-	var count = 1;
+    function mix(){
+        var count = 2;
+        $($('.card-wrapp').get().reverse()).each(function(index) {
+			var self = this;
 
-	function pos(i, cardWidth) {
+			setTimeout(function() {
 
-		setTimeout(function() {
-			var card = $('.card' + i);
+                if ((count % 3 === 0) && (count<10)) {
+                    $(self).css({
+                        'transform' : 'translate(' + left + 'px,' + top + 'px)',
+                        'transition' : 'transform 1.3s',
+                        'z-index' : count
+                    });
+                    left = 0;
+    				top += cardWidth;
+    			} else if(count<10) {
+                    $(self).css({
+                        'transform' : 'translate(' + left + 'px,' + top + 'px)',
+                        'transition' : 'transform 1.3s',
+                        'z-index' : count
+                    });
+                    left += cardWidth;
+    			}
+                count++;
 
-			$(card).css('transform', 'translate(' + left + 'px,' + top + 'px)').css('transition', 'transform 1.3s');
 
+			}, index * 450);
+		});
+    }
 
-			if (count < 3) {
-				left += cardWidth;
-			} else {
-				left = 0;
-				top += cardWidth;
-				count = 0;
-			}
-			console.log(left, top, count);
-			count++;
-
-		}, i * 50);
-	}
+	// function mix() {
+	// 	var i;
+	// 	for (i = 9; i > 0; i--) {
+	// 		pos(i, cardWidth);
+	// 	}
+	// }
+	// var count = 1;
+    //
+	// function pos(i, cardWidth) {
+    //
+	// 	setTimeout(function() {
+	// 		var card = $('.card' + i);
+    //         console.log(card);
+    //
+	// 		$(card).css('transform', 'translate(' + left + 'px,' + top + 'px)').css('transition', 'transform 1.3s');
+    //
+	// 		if (count < 3) {
+	// 			left += cardWidth;
+	// 		} else {
+	// 			left = 0;
+	// 			top += cardWidth;
+	// 			count = 0;
+	// 		}
+	// 		count++;
+    //
+	// 	}, i * 350);
+	// }
 
     $.fn.randomCard = function() {
       return this.eq(Math.floor(Math.random() * this.length));
