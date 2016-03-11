@@ -111,8 +111,8 @@ a {
 	position: relative;
 }
 
-#button {
-	background: #d10a11;
+.button {
+background: #d10a11;
    border: none;
    border-radius: 5px;
    color: #fff;

@@ -1,12 +1,12 @@
 jQuery(document).ready(function($) {
 
-    //Variables
-    var cardWidth = $('.card-wrapp').outerWidth();
-    $(window).resize(function(){
-        cardWidth = $('.card-wrapp').outerWidth();
-    });
-    console.log('.card wrapp: ' + cardWidth);
-    var left = 0;
+	//Variables
+	var cardWidth = $('.card-wrapp').outerWidth();
+	$(window).resize(function() {
+		cardWidth = $('.card-wrapp').outerWidth();
+	});
+
+	var left = 0;
 	var top = 0;
 
 
@@ -36,8 +36,8 @@ jQuery(document).ready(function($) {
 
 
 	function constructor() {
-        var top = 0;
-        var left = 0;
+		var top = 0;
+		var left = 0;
 
 		$('.card-wrapp').each(function(index) {
 			var self = this;
@@ -55,14 +55,16 @@ jQuery(document).ready(function($) {
 
 	constructor();
 
-    $('.card-wrapp').css('height', cardWidth + 'px');
-    $(window).resize(function() {
-        $('.card-wrapp').css('height', cardWidth + 'px');
-    });
+	$('.card-wrapp').css('height', cardWidth + 'px');
+	$(window).resize(function() {
+		$('.card-wrapp').css('height', cardWidth + 'px');
+	});
 
 
-    $('#button').on('click', function() {
+	$('body').on('click', '.button.notclicked, #cards.notclicked .card', function() {
 		mix();
+		$('.notclicked').removeClass('notclicked');
+		$('.card').addClass('notclicked');
 	});
 
 	function mix() {
@@ -71,44 +73,61 @@ jQuery(document).ready(function($) {
 			pos(i, cardWidth);
 		}
 	}
-    var count = 1;
+	var count = 1;
+
 	function pos(i, cardWidth) {
 
 		setTimeout(function() {
 			var card = $('.card' + i);
 
-            $(card).css('transform', 'translate(' + left + 'px,' + top + 'px)').css('transition', '2s');
+			$(card).css('transform', 'translate(' + left + 'px,' + top + 'px)').css('transition', 'transform 1.3s');
 
 
-            if (count<3) {
-                left += cardWidth;
-            }
-            else {
-                left = 0;
-                top += cardWidth;
-                count = 0;
-            }
-            console.log(left,top,count);
+			if (count < 3) {
+				left += cardWidth;
+			} else {
+				left = 0;
+				top += cardWidth;
+				count = 0;
+			}
+			console.log(left, top, count);
 			count++;
 
 		}, i * 50);
 	}
 
-    function selectCard() {
-        $('.card').on('click',function(){
-            $(this).addClass('selected');
-            $('.card').find(':not(.selected)').filter(':nth-child(5)').addClass('dealer');
+    $.fn.randomCard = function() {
+      return this.eq(Math.floor(Math.random() * this.length));
+  };
 
-            // console.log('.card:not(.selected):nth-child(' +  Math.floor( (Math.random() * $('.card').length) + 1 ) +')');
 
-            $(this).parent().css('transform','translate(0,0)').css('transition', '1.3s');
-            $(this).css('transform','rotateY(180deg)').css('transition', '1.3s');
-            $('.card:not(.selected):not(.dealer)').css('opacity', 0);
 
-        });
-    }
 
-    selectCard();
+	function selectCard() {
+		$('body').on('click', '.card.notclicked', function() {
+			$(this).parent().addClass('selected');
+            $($('.card-wrapp:not(.selected)').randomCard()).addClass('dealer');
+
+            $('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300,function(){
+                $('.card-wrapp:not(.selected):not(.dealer)').css('display','none');
+            });
+
+            $('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate('+cardWidth+'px,'+cardWidth*2+'px)').css('transition', 'transform 5.3s');
+
+
+
+            console.log(exitLeft,exitTop);
+
+			// console.log('.card:not(.selected):nth-child(' +  Math.floor( (Math.random() * $('.card').length) + 1 ) +')');
+            //
+			// $(this).parent().css('transform', 'translate(16.6666%,0)').css('transition', 'transform 1.3s');
+			// $(this).css('transform', 'rotateY(180deg)').css('transition', 'transform 1.3s');
+			// $('.card-wrapp:not(.selected):not(.dealer)').css('opacity', 0);
+
+		});
+	}
+
+	selectCard();
 
 
 
