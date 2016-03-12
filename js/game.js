@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
 	$('body').on('click', '.button.notclicked, #cards.notclicked .card', function() {
 		mix();
 		$('.notclicked').removeClass('notclicked');
-		$('.card').addClass('notclicked');
+		$('.card').addClass('notclicked userturn');
 	});
 
 	function mix() {
@@ -78,7 +78,7 @@ jQuery(document).ready(function($) {
 					$(self).css({
 						'transform': 'translate(' + left + 'px,' + top + 'px)',
 						'transition': 'transform 1s',
-						'z-index': count
+						'z-index': count+10
 					});
 					left = 0;
 					top += cardWidth;
@@ -86,7 +86,7 @@ jQuery(document).ready(function($) {
 					$(self).css({
 						'transform': 'translate(' + left + 'px,' + top + 'px)',
 						'transition': 'transform 1s',
-						'z-index': count
+						'z-index': count+10
 					});
 					left += cardWidth;
 				}
@@ -98,10 +98,11 @@ jQuery(document).ready(function($) {
 	}
 
 	function userturn() {
-		$(document).on('click', '.userturn.notclicked', function() {
+		$(document).on('click', '#cards:not(.notclicked) .userturn.notclicked', function() {
 			$('.userturn').removeClass('notclicked userturn');
 			$('.card').addClass('dealerturn');
 			$(this).parent().addClass('user');
+            $(this).addClass('flipped');
 		});
 	}
 
@@ -118,6 +119,8 @@ jQuery(document).ready(function($) {
 			$('.card-wrapp:not(.user):not(.dealer)').css('transform', 'translate(' + cardWidth + 'px,' + cardWidth * 2 + 'px)').css('transition', 'transform 3s');
 
 			flop();
+            $(this).addClass('flipped');
+
 
 		});
 	}
@@ -127,34 +130,6 @@ jQuery(document).ready(function($) {
 
 
 
-	function selectCard() {
-		$('.userturn .card.notclicked').on('click', function() {
-			alert('userturn');
-			$(this).parent().addClass('selected');
-			$(this).unbind('click');
-			$('#cards').addClass('dealerturn').removeClass('userturn');
-
-			// $($('.card-wrapp:not(.selected)').randomCard()).addClass('dealer');
-			//
-			// $('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300,function(){
-			//     $('.card-wrapp:not(.selected):not(.dealer)').css('display','none');
-			// });
-			//
-			// $('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate('+cardWidth+'px,'+cardWidth*2+'px)').css('transition', 'transform 5.3s');
-			//
-			//
-			//
-
-			// console.log('.card:not(.selected):nth-child(' +  Math.floor( (Math.random() * $('.card').length) + 1 ) +')');
-			//
-			// $(this).parent().css('transform', 'translate(16.6666%,0)').css('transition', 'transform 1.3s');
-			// $(this).css('transform', 'rotateY(180deg)').css('transition', 'transform 1.3s');
-			// $('.card-wrapp:not(.selected):not(.dealer)').css('opacity', 0);
-
-		});
-	}
-
-	// selectCard();
 
 	function dealer() {
 		$('#wrapper').on('click', '.dealerturn .card.notclicked', function() {
@@ -181,6 +156,8 @@ jQuery(document).ready(function($) {
 				'transform': 'translate(' + (cardWidth / 2 + cardWidth) + 'px,0)',
 				'transition': 'transform 2s'
 			});
+
+
 
 	}
 }
