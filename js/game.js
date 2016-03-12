@@ -67,108 +67,86 @@ jQuery(document).ready(function($) {
 		$('.card').addClass('notclicked');
 	});
 
-    function mix(){
-        var count = 2;
-        $($('.card-wrapp').get().reverse()).each(function(index) {
+	function mix() {
+		var count = 2;
+		$($('.card-wrapp').get().reverse()).each(function(index) {
 			var self = this;
 
 			setTimeout(function() {
 
-                if ((count % 3 === 0) && (count<10)) {
-                    $(self).css({
-                        'transform' : 'translate(' + left + 'px,' + top + 'px)',
-                        'transition' : 'transform 1.3s',
-                        'z-index' : count
-                    });
-                    left = 0;
-    				top += cardWidth;
-    			} else if(count<10) {
-                    $(self).css({
-                        'transform' : 'translate(' + left + 'px,' + top + 'px)',
-                        'transition' : 'transform 1.3s',
-                        'z-index' : count
-                    });
-                    left += cardWidth;
-    			}
-                count++;
+				if ((count % 3 === 0) && (count < 10)) {
+					$(self).css({
+						'transform': 'translate(' + left + 'px,' + top + 'px)',
+						'transition': 'transform 1s',
+						'z-index': count
+					});
+					left = 0;
+					top += cardWidth;
+				} else if (count < 10) {
+					$(self).css({
+						'transform': 'translate(' + left + 'px,' + top + 'px)',
+						'transition': 'transform 1s',
+						'z-index': count
+					});
+					left += cardWidth;
+				}
+				count++;
 
 
 			}, index * 450);
 		});
-    }
+	}
 
-	// function mix() {
-	// 	var i;
-	// 	for (i = 9; i > 0; i--) {
-	// 		pos(i, cardWidth);
-	// 	}
-	// }
-	// var count = 1;
-    //
-	// function pos(i, cardWidth) {
-    //
-	// 	setTimeout(function() {
-	// 		var card = $('.card' + i);
-    //         console.log(card);
-    //
-	// 		$(card).css('transform', 'translate(' + left + 'px,' + top + 'px)').css('transition', 'transform 1.3s');
-    //
-	// 		if (count < 3) {
-	// 			left += cardWidth;
-	// 		} else {
-	// 			left = 0;
-	// 			top += cardWidth;
-	// 			count = 0;
-	// 		}
-	// 		count++;
-    //
-	// 	}, i * 350);
-	// }
+	function userturn() {
+		$(document).on('click', '.userturn.notclicked', function() {
+			$('.userturn').removeClass('notclicked userturn');
+			$('.card').addClass('dealerturn');
+			$(this).parent().addClass('user');
+		});
+	}
 
-  //   $.fn.randomCard = function() {
-  //     return this.eq(Math.floor(Math.random() * this.length));
-  // };
-function userturn() {
-    $(document).on('click','.userturn.notclicked', function(){
-        alert('userturn');
-        $('.userturn').removeClass('notclicked userturn');
-        $('.card').addClass('dealerturn');
-        $(this).addClass('user');
-    });
-}
+	function dealerturn() {
+		$(document).on('click', '.card-wrapp:not(.user) .dealerturn', function() {
+			$(this).parent().addClass('dealer');
+			$('.card-wrapp:not(.user):not(.dealer) .card').css({
+				'transform': 'rotate(360deg)',
+				'transition': 'transform 2s'
+			}).fadeOut(1300, function() {
+				$('.card-wrapp:not(.user):not(.dealer)').css('display', 'none');
+			});
 
-function dealerturn() {
-    $(document).on('click','.dealerturn', function(){
-        alert('dealerturn');
-        $(this).addClass('dealer');
-    });
-}
+			$('.card-wrapp:not(.user):not(.dealer)').css('transform', 'translate(' + cardWidth + 'px,' + cardWidth * 2 + 'px)').css('transition', 'transform 3s');
 
-userturn();
-dealerturn();
+			flop();
+
+		});
+	}
+
+	userturn();
+	dealerturn();
 
 
 
 	function selectCard() {
-		$('.userturn .card.notclicked').on('click',function() {
-            alert('userturn');
+		$('.userturn .card.notclicked').on('click', function() {
+			alert('userturn');
 			$(this).parent().addClass('selected');
-            $(this).unbind('click');
-            $('#cards').addClass('dealerturn').removeClass('userturn');
+			$(this).unbind('click');
+			$('#cards').addClass('dealerturn').removeClass('userturn');
 
-            // $($('.card-wrapp:not(.selected)').randomCard()).addClass('dealer');
-            //
-            // $('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300,function(){
-            //     $('.card-wrapp:not(.selected):not(.dealer)').css('display','none');
-            // });
-            //
-            // $('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate('+cardWidth+'px,'+cardWidth*2+'px)').css('transition', 'transform 5.3s');
-            //
-            //
-            //
+			// $($('.card-wrapp:not(.selected)').randomCard()).addClass('dealer');
+			//
+			// $('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300,function(){
+			//     $('.card-wrapp:not(.selected):not(.dealer)').css('display','none');
+			// });
+			//
+			// $('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate('+cardWidth+'px,'+cardWidth*2+'px)').css('transition', 'transform 5.3s');
+			//
+			//
+			//
 
 			// console.log('.card:not(.selected):nth-child(' +  Math.floor( (Math.random() * $('.card').length) + 1 ) +')');
-            //
+			//
 			// $(this).parent().css('transform', 'translate(16.6666%,0)').css('transition', 'transform 1.3s');
 			// $(this).css('transform', 'rotateY(180deg)').css('transition', 'transform 1.3s');
 			// $('.card-wrapp:not(.selected):not(.dealer)').css('opacity', 0);
@@ -178,21 +156,34 @@ dealerturn();
 
 	// selectCard();
 
-    function dealer() {
-        $('#wrapper').on('click', '.dealerturn .card.notclicked', function() {
-            $(this).addClass('dealer');
+	function dealer() {
+		$('#wrapper').on('click', '.dealerturn .card.notclicked', function() {
+			$(this).addClass('dealer');
 
-            $('.selected').css('transform','translate(' + cardWidth/2 + 'px, 0)');
+			$('.selected').css('transform', 'translate(' + cardWidth / 2 + 'px, 0)');
 
-            $('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300,function(){
-                $('.card-wrapp:not(.selected):not(.dealer)').css('display','none');
-            });
+			$('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300, function() {
+				$('.card-wrapp:not(.selected):not(.dealer)').css('display', 'none');
+			});
 
-            $('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate('+cardWidth+'px,'+cardWidth*2+'px)').css('transition', 'transform 5.3s');
-        });
-    }
+			$('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate(' + cardWidth + 'px,' + cardWidth * 2 + 'px)').css('transition', 'transform 5.3s');
+		});
+	}
 
-    // dealer();
+	function flop() {
+		var win = true;
+		if (win) {
+			$('.user').css({
+				'transform': 'translate(' + cardWidth / 2 + 'px,0)',
+				'transition': 'transform 2s'
+			});
+            $('.dealer').css({
+				'transform': 'translate(' + (cardWidth / 2 + cardWidth) + 'px,0)',
+				'transition': 'transform 2s'
+			});
+
+	}
+}
 
 
 
