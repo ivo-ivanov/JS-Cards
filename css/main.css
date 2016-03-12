@@ -112,7 +112,7 @@ a {
 	perspective: 800px;
 }
 
-.button {
+.gamebutton {
 	background: #d10a11;
 	border: none;
 	border-radius: 5px;
@@ -120,10 +120,11 @@ a {
 	padding: 15px 32px;
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
+	display: block;
 	font-size: 16px;
 	margin: 5%;
 	cursor: pointer;
+	transition: 1s;
 }
 
 .card-wrapp {

@@ -9,6 +9,7 @@ jQuery(document).ready(function($) {
 	var left = cardWidth;
 	var top = 0;
 	var user, dealer, falsh;
+	var winner = false;
 
 
 	//Check for mobile devices
@@ -62,10 +63,17 @@ jQuery(document).ready(function($) {
 	});
 
 
-	$('body').on('click', '.button.notclicked, #cards.notclicked .card', function() {
+	$('body').on('click', '.gamebutton.notclicked, #cards.notclicked .card', function() {
 		mix();
 		$('.notclicked').removeClass('notclicked');
 		$('.card').addClass('notclicked userturn');
+		$('.gamebutton').css({
+			'opacity': 0,
+			'cursor': 'default'
+		});
+		setTimeout(function() {
+			$('.gamebutton').css('margin', '5% auto').empty();
+		}, 1000);
 	});
 
 	function mix() {
@@ -124,6 +132,8 @@ jQuery(document).ready(function($) {
 
 			flop();
 			$(this).addClass('flipped');
+			msg();
+
 
 
 		});
@@ -131,9 +141,6 @@ jQuery(document).ready(function($) {
 
 	userturn();
 	dealerturn();
-
-
-
 
 
 	function flop() {
@@ -169,7 +176,6 @@ jQuery(document).ready(function($) {
 
 			var ind = 0;
 
-
 			console.log('lose!');
 			user = randorder[ind++];
 			flash = user;
@@ -197,8 +203,23 @@ jQuery(document).ready(function($) {
 		return o;
 	}
 
-	game(false);
+	game(winner);
 	console.log(user, dealer);
+
+	function msg() {
+		if (winner) {
+			$('.gamebutton').css({
+				'background': '#13a538'
+			}).text('Sie haben gewonnen!');
+		} else {
+			$('.gamebutton').text('Sie haben leider verloren.');
+		}
+		setTimeout(function() {
+			$('.gamebutton').css({
+				'opacity': 1
+			});
+		}, 500);
+	}
 
 
 
