@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 
 	var left = cardWidth;
 	var top = 0;
+	var user, dealer, falsh;
 
 
 	//Check for mobile devices
@@ -78,7 +79,7 @@ jQuery(document).ready(function($) {
 					$(self).css({
 						'transform': 'translate(' + left + 'px,' + top + 'px)',
 						'transition': 'transform 1s',
-						'z-index': count+10
+						'z-index': count + 10
 					});
 					left = 0;
 					top += cardWidth;
@@ -86,7 +87,7 @@ jQuery(document).ready(function($) {
 					$(self).css({
 						'transform': 'translate(' + left + 'px,' + top + 'px)',
 						'transition': 'transform 1s',
-						'z-index': count+10
+						'z-index': count + 10
 					});
 					left += cardWidth;
 				}
@@ -102,13 +103,16 @@ jQuery(document).ready(function($) {
 			$('.userturn').removeClass('notclicked userturn');
 			$('.card').addClass('dealerturn');
 			$(this).parent().addClass('user');
-            $(this).addClass('flipped');
+			$(this).find('.card-back').addClass(user);
+			$(this).addClass('flipped');
 		});
 	}
 
 	function dealerturn() {
 		$(document).on('click', '.card-wrapp:not(.user) .dealerturn', function() {
 			$(this).parent().addClass('dealer');
+			$(this).find('.card-back').addClass(dealer);
+
 			$('.card-wrapp:not(.user):not(.dealer) .card').css({
 				'transform': 'rotate(360deg)',
 				'transition': 'transform 2s'
@@ -119,7 +123,7 @@ jQuery(document).ready(function($) {
 			$('.card-wrapp:not(.user):not(.dealer)').css('transform', 'translate(' + cardWidth + 'px,' + cardWidth * 2 + 'px)').css('transition', 'transform 3s');
 
 			flop();
-            $(this).addClass('flipped');
+			$(this).addClass('flipped');
 
 
 		});
@@ -131,36 +135,72 @@ jQuery(document).ready(function($) {
 
 
 
-	function dealer() {
-		$('#wrapper').on('click', '.dealerturn .card.notclicked', function() {
-			$(this).addClass('dealer');
-
-			$('.selected').css('transform', 'translate(' + cardWidth / 2 + 'px, 0)');
-
-			$('.card-wrapp:not(.selected):not(.dealer) .card').css('transform', 'rotate(360deg)').css('transition', 'transform 2.3s').fadeOut(2300, function() {
-				$('.card-wrapp:not(.selected):not(.dealer)').css('display', 'none');
-			});
-
-			$('.card-wrapp:not(.selected):not(.dealer)').css('transform', 'translate(' + cardWidth + 'px,' + cardWidth * 2 + 'px)').css('transition', 'transform 5.3s');
-		});
-	}
 
 	function flop() {
-		var win = true;
-		if (win) {
-			$('.user').css({
-				'transform': 'translate(' + cardWidth / 2 + 'px,0)',
-				'transition': 'transform 2s'
-			});
-            $('.dealer').css({
-				'transform': 'translate(' + (cardWidth / 2 + cardWidth) + 'px,0)',
-				'transition': 'transform 2s'
-			});
 
-
+		$('.user').css({
+			'transform': 'translate(' + cardWidth / 2 + 'px,0)',
+			'transition': 'transform 2s'
+		});
+		$('.dealer').css({
+			'transform': 'translate(' + (cardWidth / 2 + cardWidth) + 'px,0)',
+			'transition': 'transform 2s'
+		});
 
 	}
-}
+
+
+	function game(result) {
+		var randorder = shuffle(['carrot', 'bunny', 'egg']);
+		var removeItem;
+
+		if (result) {
+			removeItem = 'egg';
+			randorder = jQuery.grep(randorder, function(value) {
+				return value != removeItem;
+			});
+			var index = 0;
+
+			console.log('win!');
+
+			user = randorder[index++];
+			dealer = randorder[index++];
+		} else {
+
+			var ind = 0;
+
+
+			console.log('lose!');
+			user = randorder[ind++];
+			flash = user;
+
+			if (flash == 'carrot') {
+				removeItem = 'bunny';
+				randorder = jQuery.grep(randorder, function(value) {
+					return value != removeItem;
+				});
+			} else if (flash == 'bunny') {
+				removeItem = 'carrot';
+				randorder = jQuery.grep(randorder, function(value) {
+					return value != removeItem;
+				});
+			}
+
+			dealer = randorder[(Math.floor(Math.random() * randorder.length) + 1) - 1];
+
+		}
+
+	}
+
+	function shuffle(o) {
+		for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		return o;
+	}
+
+	game(false);
+	console.log(user, dealer);
+
+
 
 
 

@@ -173,20 +173,16 @@ a {
 	transform: rotateY( 180deg );
 }
 
-.dealer .card-back {
+.carrot {
 	background: url(../images/carrot.svg) no-repeat center center #13a538;
-}
-
-.egg {
-	background: url(../images/egg.svg) no-repeat center center #13a538;
 }
 
 .bunny {
 	background: url(../images/bunny.svg) no-repeat center center #13a538;
 }
 
-.carrot {
-	background: url(../images/carrot.svg) no-repeat center center #13a538;
+.egg {
+	background: url(../images/egg.svg) no-repeat center center #13a538;
 }
 
 .card.flipped {
