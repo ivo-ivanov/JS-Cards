@@ -221,6 +221,18 @@ jQuery(document).ready(function($) {
 		}, 500);
 	}
 
+	function formConstructor(){
+		if(winner){
+
+
+		}
+		else{
+
+		}
+	}
+
+
+formConstructor();
 
 
 

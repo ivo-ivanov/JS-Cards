@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>SBB Ostern</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+	<!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+	<div id="wrapper">
+
+		<form id="gameform">
+			<label for="anrede">Anrede</label>
+			<select name="anrede">
+				<option value="volvo">Herr</option>
+				<option value="saab">Frau</option>
+			</select>
+
+			<label for="vorname">Vorname</label>
+			<input type="text" name="vorname" />
+
+			<label for="name">Name</label>
+			<input type="text" name="name" />
+
+			<label for="email">E-Mail</label>
+			<input type="email" name="email" />
+
+			<label for="strasse">Strasse und Nummer</label>
+			<input type="text" name="strasse" />
+
+			<label for="plz">PLZ und Ort</label>
+			<input type="text" name="plz" />
+
+			<input type="checkbox" name="newsletter" value="ok" checked>
+			Ich möchte zukünftig von der SBB via E-Mail über attraktive Angebote an den Bahnhöfen informiert werden und bin einverstanden, dass meine Daten von der SBB verwendet werden.
+
+			<input type="submit" value="Senden"/>
+
+		</form>
+
+
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/game.js"></script>
+</body>
+
+</html>

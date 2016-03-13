@@ -96,13 +96,89 @@ a {
     color: #000;
 }
 
-#wrapper {
+.wrapper {
 	width: 90%;
 	max-width: 1170px;
 	margin: 0 auto;
-	height: 100vh;
+	min-height: 100vh;
 	background: #fff;
+	display: block;
 }
+
+/*------ HEADER ------*/
+
+header {
+	width: 100%;
+	height: 106px;
+	background: #fff;
+	position: fixed;
+}
+
+#langs {
+	float: right;
+	font: 16px/20px normal Arial;
+}
+
+#langs li {
+	float: left;
+}
+
+#langs a {
+	font-weight: 400;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    margin: 15px 8px 0;
+    color: #777;
+    line-height: 2;
+	display: inline-block;
+}
+
+#langs .current a {
+	color: #000;
+	font-weight: bold;
+}
+
+#logo {
+	display: inline-block;
+	float: right;
+	width: 161px;
+	height: 17px;
+	margin: 15px 20px;
+	text-indent: -9999px;
+	background: url(../images/sbb-logo.png) no-repeat center center;
+	background-size: 100% auto;
+}
+
+#logo,
+#langs {
+	float: right;
+}
+
+#navi {
+	float: left;
+	width: 100%;
+	display: block;
+}
+
+#navi li {
+	float: left;
+	padding: 15px;
+}
+
+#navi a {
+	color: #000;
+	font: bold 16px/20px 'helvetica_neue', sans-serif;
+}
+
+#navi .active a,
+#navi a:hover {
+	color: #d10a11;
+}
+
+/*------ HERO ------*/
+
+
+/*------ CARDS ------*/
 
 #cards {
 	width: 94%;
@@ -188,4 +264,50 @@ a {
 
 .card.flipped {
   transform: rotateY( 180deg );
+}
+
+/*------- FORM ------*/
+
+#gameform {
+	width: 50%;
+	display: block;
+	margin: 25px auto;
+	padding: 50px;
+	background: #f1f1f1;
+	border-radius: 5px;
+	font-size: 16px;
+	line-height: 19px;
+	font-family: 'helvetica_neue';
+}
+
+#gameform label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: 22px;
+    line-height: 26px;
+}
+
+#gameform input,
+#gameform select {
+	display: block;
+	border-radius: 2px;
+	border:none;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+#gameform select option {
+	padding: 10px;
+}
+
+#gameform input[type='checkbox'] {
+	display: inline-block;
+	width: auto;
+	margin: 10px 5px 0 0;
+}
+
+#gameform input[type='submit'] {
+	margin-top: 50px;
+	padding: 10px;
 }
