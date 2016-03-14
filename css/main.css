@@ -100,8 +100,6 @@ a {
 	width: 90%;
 	max-width: 1170px;
 	margin: 0 auto;
-	min-height: 100vh;
-	background: #fff;
 	display: block;
 }
 
@@ -109,9 +107,12 @@ a {
 
 header {
 	width: 100%;
-	height: 106px;
+	height: 103px;
 	background: #fff;
+	top: 0;
+	left: 0;
 	position: fixed;
+	z-index: 1000;
 }
 
 #langs {
@@ -172,20 +173,117 @@ header {
 
 #navi .active a,
 #navi a:hover {
-	color: #d10a11;
+	color: #d10a13;
 }
 
 /*------ HERO ------*/
 
+.hero {
+	width: 100%;
+	background: url(../images/hase-bgr.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	padding-top: 40%;
+	margin-top: 103px;
+}
 
-/*------ CARDS ------*/
+.overlay-small {
+	position: absolute;
+    top: 50%;
+    width: 350px;
+    left: 0;
+    margin-top: -156px;
+}
 
-#cards {
-	width: 94%;
-	height: 1000px; /*temp*/
-	margin: 0 auto;
-	position: relative;
-	perspective: 800px;
+
+.box_perspective h1 {
+    color: #fff;
+	font-size: 38px;
+	line-height: 40px;
+    margin-top: .4em;
+    margin-bottom: .5em
+}
+
+
+
+.box_perspective .content.bg_red,
+.box_perspective .content.bg_red a,
+.box_perspective .content.bg_red p,
+.circle {
+    color: #fff;
+}
+
+.box_perspective .content {
+    margin: -1px 0;
+    padding: 42px 20px;
+}
+
+.box_perspective .well h3 {
+    margin-bottom: 1em
+}
+
+.box_perspective .bg_red {
+    background-color: #d10a11;
+	/*background-color: rgba(209, 10, 17, 0.8);*/
+}
+
+.box_perspective .helper.bottom.right .overflow .bg_red,
+.box_perspective .helper.top.left .overflow .bg_red {
+    -ms-transform: skew(82deg,0deg);
+    -webkit-transform: skew(82deg,0deg);
+    transform: skew(82deg,0deg);
+}
+
+.box_perspective .left,
+.box_perspective .right {
+    float: none;
+}
+
+.box_perspective .helper .overflow img {
+    width: 15%;
+    height: auto;
+}
+
+.box_perspective .helper .overflow {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.box_perspective .helper.left .overflow .bg_red {
+    left: -57%;
+}
+.box_perspective .helper.bottom .overflow .bg_red, .box_perspective .helper.top .overflow .bg_red {
+    top: 0;
+}
+.box_perspective .helper .overflow .bg_red {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.box_perspective .helper.bottom.left .overflow .bg_red,
+.box_perspective .helper.top.right .overflow .bg_red {
+	-ms-transform: skew(-82deg,0deg);
+    -webkit-transform: skew(-82deg,0deg);
+    transform: skew(-82deg,0deg);
+}
+
+.hero .content.bg_red a {
+	background: url(../images/circle.svg) no-repeat;
+	background-size: 25px 25px;
+	background-position: 0 8px;
+	padding: 0 0 0 30px;
+	display: inline-block;
+}
+
+/*------- CONTENT ------*/
+
+.content-text {
+	font-size: 55px;
+	line-height: 65px;
+	padding: 25px 0;
 }
 
 .gamebutton {
@@ -198,9 +296,29 @@ header {
 	text-decoration: none;
 	display: block;
 	font-size: 16px;
-	margin: 5%;
+	margin: 25px 0;
 	cursor: pointer;
 	transition: 1s;
+}
+
+.gamebutton:focus {
+	outline:0;
+}
+
+/*------ CARDS ------*/
+
+.cards-wrapp{
+	min-height: 1200px;
+	background: #fff;
+	border-radius: 5px;
+}
+
+#cards {
+	width: 94%;
+	margin: 0 auto;
+	padding: 3% 0;
+	position: relative;
+	perspective: 800px;
 }
 
 .card-wrapp {
@@ -270,7 +388,7 @@ header {
 
 #gameform {
 	width: 50%;
-	display: block;
+	display: none;
 	margin: 25px auto;
 	padding: 50px;
 	background: #f1f1f1;

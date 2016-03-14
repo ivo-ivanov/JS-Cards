@@ -68,11 +68,11 @@ jQuery(document).ready(function($) {
 		$('.notclicked').removeClass('notclicked');
 		$('.card').addClass('notclicked userturn');
 		$('.gamebutton').css({
-			'opacity': 0,
+			'opacity': 0.5,
 			'cursor': 'default'
 		});
 		setTimeout(function() {
-			$('.gamebutton').css('margin', '5% auto').empty();
+			// $('.gamebutton').css('margin', '5% auto').empty();
 		}, 1000);
 	});
 
@@ -208,14 +208,14 @@ jQuery(document).ready(function($) {
 
 	function msg() {
 		if (winner) {
-			$('.gamebutton').css({
+			$('.gamebutton2').css({
 				'background': '#13a538'
 			}).text('Sie haben gewonnen!');
 		} else {
-			$('.gamebutton').text('Sie haben leider verloren.');
+			$('.gamebutton2').text('Sie haben leider verloren.');
 		}
 		setTimeout(function() {
-			$('.gamebutton').css({
+			$('.gamebutton2').css({
 				'opacity': 1
 			});
 		}, 500);
