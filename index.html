@@ -132,37 +132,50 @@
 				</div>
 			</div>
 
+			<div id="result"><h2>Result</h2></div>
+
+			<form id="gameform">
+				<label for="anrede">Anrede</label>
+				<select name="anrede">
+					<option value="volvo">Herr</option>
+					<option value="saab">Frau</option>
+				</select>
+
+				<label for="vorname">Vorname</label>
+				<input type="text" name="vorname" />
+
+				<label for="name">Name</label>
+				<input type="text" name="name" />
+
+				<label for="email">E-Mail</label>
+				<input type="email" name="email" />
+
+				<label for="strasse">Strasse und Nummer</label>
+				<input type="text" name="strasse" />
+
+				<label for="plz">PLZ und Ort</label>
+				<input type="text" name="plz" />
+
+				<input type="checkbox" name="newsletter" value="ok" checked> Ich möchte zukünftig von der SBB via E-Mail über attraktive Angebote an den Bahnhöfen informiert werden und bin einverstanden, dass meine Daten von der SBB verwendet werden.
+
+				<div id="bahnhof">
+					<label for="newsletter-bahnhof">Über welchen Bahnhof möchten Sie informiert werden:</label>
+					<select name="newsletter-bahnhof">
+						<option value="Bern">Bern</option>
+						<option value="Basel">Basel</option>
+						<option value="Zürich">Zürich</option>
+						<option value="Luzern">Luzern</option>
+						<option value="Genf">Genf</option>
+					</select>
+				</div>
+
+
+				<input type="submit" value="Senden" />
+
+			</form>
+
 		</section>
 
-
-
-		<form id="gameform">
-			<label for="anrede">Anrede</label>
-			<select name="anrede">
-				<option value="volvo">Herr</option>
-				<option value="saab">Frau</option>
-			</select>
-
-			<label for="vorname">Vorname</label>
-			<input type="text" name="vorname" />
-
-			<label for="name">Name</label>
-			<input type="text" name="name" />
-
-			<label for="email">E-Mail</label>
-			<input type="email" name="email" />
-
-			<label for="strasse">Strasse und Nummer</label>
-			<input type="text" name="strasse" />
-
-			<label for="plz">PLZ und Ort</label>
-			<input type="text" name="plz" />
-
-			<input type="checkbox" name="newsletter" value="ok" checked> Ich möchte zukünftig von der SBB via E-Mail über attraktive Angebote an den Bahnhöfen informiert werden und bin einverstanden, dass meine Daten von der SBB verwendet werden.
-
-			<input type="submit" value="Senden" />
-
-		</form>
 
 	</div>
 

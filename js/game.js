@@ -8,9 +8,8 @@ jQuery(document).ready(function($) {
 
 	var left = cardWidth;
 	var top = 0;
-	var user, dealer, falsh;
-	var winner = false;
-
+	var user, dealer;
+	var winner = true;
 
 	//Check for mobile devices
 	function isTouchEnabled() {
@@ -58,25 +57,28 @@ jQuery(document).ready(function($) {
 	constructor();
 
 	$('.card-wrapp').css('height', cardWidth + 'px');
+	$('#cards').css('height', (cardWidth + 16 + $('#cards').width()*0.06)| 0);
 	$(window).resize(function() {
 		$('.card-wrapp').css('height', cardWidth + 'px');
+		$('#cards').css('height', (cardWidth*3 + $('#cards').width()*0.06)| 0);
 	});
 
 
 	$('body').on('click', '.gamebutton.notclicked, #cards.notclicked .card', function() {
 		mix();
-		$('.notclicked').removeClass('notclicked');
-		$('.card').addClass('notclicked userturn');
-		$('.gamebutton').css({
-			'opacity': 0.5,
-			'cursor': 'default'
-		});
+
 		setTimeout(function() {
-			// $('.gamebutton').css('margin', '5% auto').empty();
+			$('.notclicked').removeClass('notclicked');
+			$('.card').addClass('notclicked userturn');
+			$('.gamebutton').css({
+				'opacity': 0.5,
+				'cursor': 'default'
+			});
 		}, 1000);
 	});
 
 	function mix() {
+		$('#cards').css('height', (cardWidth*3 + $('#cards').width()*0.06)| 0);
 		var count = 2;
 		$($('.card-wrapp').get().reverse()).each(function(index) {
 			var self = this;
@@ -91,6 +93,7 @@ jQuery(document).ready(function($) {
 					});
 					left = 0;
 					top += cardWidth;
+
 				} else if (count < 10) {
 					$(self).css({
 						'transform': 'translate(' + left + 'px,' + top + 'px)',
@@ -107,7 +110,8 @@ jQuery(document).ready(function($) {
 	}
 
 	function userturn() {
-		$(document).on('click', '#cards:not(.notclicked) .userturn.notclicked', function() {
+		$(document).on('click', '.userturn.notclicked', function() {
+console.log(this);
 			$('.userturn').removeClass('notclicked userturn');
 			$('.card').addClass('dealerturn');
 			$(this).parent().addClass('user');
@@ -208,31 +212,56 @@ jQuery(document).ready(function($) {
 
 	function msg() {
 		if (winner) {
-			$('.gamebutton2').css({
-				'background': '#13a538'
+			$('#result').css({
+				'margin-top' : cardWidth + 80,
+				'display' : 'block'
+			});
+
+			$('#result h2').css({
+				'background' : '#13a538',
+				'opacity' : 1
 			}).text('Sie haben gewonnen!');
+
+
 		} else {
-			$('.gamebutton2').text('Sie haben leider verloren.');
+			$('#result').css({
+				'margin-top' : cardWidth + 80,
+				'display' : 'block'
+			});
+
+			$('#result h2').css({
+				'background' : '#d10a11',
+				'opacity' : 1
+			}).text('Sie haben leider verloren!');
 		}
 		setTimeout(function() {
-			$('.gamebutton2').css({
-				'opacity': 1
-			});
-		}, 500);
+			formConstructor();
+		}, 1000);
 	}
 
 	function formConstructor(){
 		if(winner){
+			$('#gameform').css({
+				'display' : 'block',
+				'opacity' : 1
+			});
 
+			$('#cards').css('height', 'auto');
 
 		}
 		else{
+			$('#gameform > label:nth-child(9),#gameform > input[type="text"]:nth-child(10),#gameform > label:nth-child(11),#gameform > input[type="text"]:nth-child(12)').remove();
+			$('#gameform').css({
+				'display' : 'block',
+				'opacity' : 1
+			});
 
+			$('#cards').css('height', 'auto');
 		}
 	}
 
 
-formConstructor();
+
 
 
 

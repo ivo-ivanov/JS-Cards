@@ -308,9 +308,9 @@ header {
 /*------ CARDS ------*/
 
 .cards-wrapp{
-	min-height: 1200px;
 	background: #fff;
 	border-radius: 5px;
+	margin-bottom: 50px;
 }
 
 #cards {
@@ -319,6 +319,7 @@ header {
 	padding: 3% 0;
 	position: relative;
 	perspective: 800px;
+	transition: height 2s;
 }
 
 .card-wrapp {
@@ -343,6 +344,11 @@ header {
 	position: relative;
 	transform-style: preserve-3d;
   	transition: transform 1s;
+}
+
+.user .card,
+.dealer .card {
+	cursor: default;
 }
 
 .card div {
@@ -384,18 +390,36 @@ header {
   transform: rotateY( 180deg );
 }
 
+#result {
+	text-align: center;
+	display: none;
+}
+
+#result h2 {
+	padding: 25px 50px;
+	border-radius: 5px;
+	display: inline;
+	opacity: 0;
+	margin: 0 auto;
+	color: #fff;
+	transition: opacity 4s;
+	font-size: 55px;
+}
+
 /*------- FORM ------*/
 
 #gameform {
 	width: 50%;
 	display: none;
-	margin: 25px auto;
+	opacity: 0;
+	margin: 75px auto 50px;
 	padding: 50px;
 	background: #f1f1f1;
 	border-radius: 5px;
 	font-size: 16px;
 	line-height: 19px;
 	font-family: 'helvetica_neue';
+	transition: 3s;
 }
 
 #gameform label {
@@ -428,4 +452,10 @@ header {
 #gameform input[type='submit'] {
 	margin-top: 50px;
 	padding: 10px;
+}
+
+#gameform #bahnhof label {
+	margin-top: 20px;
+	font-size: 16px;
+	line-height: 19px;
 }
