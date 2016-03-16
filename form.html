@@ -17,39 +17,58 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-	<div id="wrapper">
 
-		<form id="gameform">
-			<label for="anrede">Anrede</label>
-			<select name="anrede">
-				<option value="volvo">Herr</option>
-				<option value="saab">Frau</option>
-			</select>
+	<div class="cards-wrapp wrapper">
 
-			<label for="vorname">Vorname</label>
-			<input type="text" name="vorname" />
+		<section id="cards" class="notclicked">
 
-			<label for="name">Name</label>
-			<input type="text" name="name" />
 
-			<label for="email">E-Mail</label>
-			<input type="email" name="email" />
 
-			<label for="strasse">Strasse und Nummer</label>
-			<input type="text" name="strasse" />
+			<form id="gameform" method="post" action="insert-win.php" style="opacity:1; display: block">
+				<label for="anrede">Anrede</label>
+				<select name="anrede">
+					<option value="herr">Herr</option>
+					<option value="frau">Frau</option>
+				</select>
 
-			<label for="plz">PLZ und Ort</label>
-			<input type="text" name="plz" />
+				<label for="vorname">Vorname</label>
+				<input type="text" name="vorname" />
 
-			<input type="checkbox" name="newsletter" value="ok" checked>
-			Ich möchte zukünftig von der SBB via E-Mail über attraktive Angebote an den Bahnhöfen informiert werden und bin einverstanden, dass meine Daten von der SBB verwendet werden.
+				<label for="name">Name</label>
+				<input type="text" name="name" />
 
-			<input type="submit" value="Senden"/>
+				<label for="email">E-Mail</label>
+				<input type="email" name="email" />
 
-		</form>
+				<label for="strasse">Strasse und Nummer</label>
+				<input type="text" name="strasse" />
+
+				<label for="plz">PLZ und Ort</label>
+				<input type="text" name="plz" />
+
+				<input type="checkbox" name="newsletter" value="ok" checked> Ich möchte zukünftig von der SBB via E-Mail über attraktive Angebote an den Bahnhöfen informiert werden und bin einverstanden, dass meine Daten von der SBB verwendet werden.
+
+				<div id="bahnhof">
+					<label for="newsletter-bahnhof">Über welchen Bahnhof möchten Sie informiert werden:</label>
+					<select name="newsletter-bahnhof">
+						<option value="Bern">Bern</option>
+						<option value="Basel">Basel</option>
+						<option value="Zürich">Zürich</option>
+						<option value="Luzern">Luzern</option>
+						<option value="Genf">Genf</option>
+					</select>
+				</div>
+
+
+				<input type="submit" value="Senden" />
+
+			</form>
+
+		</section>
 
 
 	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="js/game.js"></script>
 </body>
