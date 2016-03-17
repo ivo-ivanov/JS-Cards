@@ -541,6 +541,7 @@ select:focus {
 
 	#result h2 {
 		font-size: 40px;
+		line-height: 40px;
 	}
 
 	#gameform {
@@ -559,7 +560,7 @@ select:focus {
 	#gameform select,
 	#gameform option {
 		font-size: 20px;
-		line-height: 25px;
+		line-height: 20px;
 	}
 }
 
@@ -571,10 +572,6 @@ select:focus {
 
 	#gameform {
 		padding: 20px;
-	}
-
-	#result h2 {
-		font-size: 40px;
 	}
 
 	#gameform {
@@ -589,7 +586,7 @@ select:focus {
 	#result h2 {
 		display: block;
 		font-size: 20px;
-		line-height: 25px;
+		line-height: 20px;
 		padding: 20px;
 	}
 

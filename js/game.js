@@ -248,6 +248,7 @@ jQuery(document).ready(function($) {
             }).text('Sie haben gewonnen!');
 
             $('#gameform').attr('action', 'insert-win.php');
+            $(window).trigger("resize");
 
         } else {
             $('#gameform > label:nth-child(7),#gameform > input[type="text"]:nth-child(8),#gameform > label:nth-child(9),#gameform > input[type="text"]:nth-child(10)').remove();
